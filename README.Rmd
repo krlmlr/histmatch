@@ -1,0 +1,47 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+options(width = 120, digits = 3)
+```
+
+# histmatch
+
+Provides a fast implementation for weighted [histogram matching](https://en.wikipedia.org/wiki/Histogram_matching).
+
+```{r}
+library(histmatch)
+```
+
+
+## Timing
+
+
+```{r}
+r <- function(e) runif(10 ** e)
+```
+
+```{r echo = FALSE}
+set.seed(123)
+microbenchmark::microbenchmark(
+  r(3),
+  r(4),
+  histmatch(r(3), r(3)),
+  histmatch(r(3), r(3), r(3)),
+  histmatch(r(3), r(4)),
+  histmatch(r(3), r(4), r(4)),
+  histmatch(r(4), r(4)),
+  histmatch(r(4), r(4), r(4)),
+  histmatch(r(4), r(3)),
+  histmatch(r(4), r(3), r(3)),
+  unit = "ms"
+)
+```
