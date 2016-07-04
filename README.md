@@ -26,3 +26,10 @@ r <- function(e) runif(10 ** e)
     #> 7 histmatch(r(4), r(4), r(4))       5.8
     #> 8       histmatch(r(4), r(3))       3.4
     #> 9 histmatch(r(4), r(3), r(3))       3.0
+
+Installation
+------------
+
+``` r
+devtools::install_github("krlmlr/histmatch")
+```

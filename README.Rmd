@@ -49,3 +49,10 @@ microbenchmark::microbenchmark(
   summarize(median_ms = median(time) / 1e6) %>% 
   ungroup
 ```
+
+
+## Installation
+
+```r
+devtools::install_github("krlmlr/histmatch")
+```
