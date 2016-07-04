@@ -21,7 +21,8 @@ histmatch <- function(source, target, w = NULL) {
 
   #xy_source_new <- approx(x_target, y_target, x_source, ties = "ordered")
   #xy_source_new$y
-  .Call(stats:::C_Approx, x_target, y_target, as.double(x_source), 1,
+  .Call(stats:::C_Approx, x_target, y_target, as.double(x_source),
+        1, # 1 = linear, 2 = constant
         NA, NA, 0, PACKAGE = "stats")
 }
 
