@@ -33,7 +33,6 @@ r <- function(e) runif(10 ** e)
 ```{r echo = FALSE}
 set.seed(123)
 microbenchmark::microbenchmark(
-  r(3),
   r(4),
   histmatch(r(3), r(3)),
   histmatch(r(3), r(3), r(3)),
