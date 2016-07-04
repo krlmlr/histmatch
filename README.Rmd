@@ -17,9 +17,9 @@ options(width = 120, digits = 1)
 
 Provides a fast implementation for weighted [histogram matching](https://en.wikipedia.org/wiki/Histogram_matching).
 
-```{r}
+```{r echo = FALSE}
 library(histmatch)
-library(dplyr)
+library(dplyr, warn.conflicts = FALSE)
 ```
 
 

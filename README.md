@@ -5,19 +5,6 @@ histmatch
 
 Provides a fast implementation for weighted [histogram matching](https://en.wikipedia.org/wiki/Histogram_matching).
 
-``` r
-library(histmatch)
-library(dplyr)
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
-```
-
 Timing
 ------
 
@@ -34,7 +21,7 @@ r <- function(e) runif(10 ** e)
     #> 2       histmatch(r(3), r(3))       0.6
     #> 3 histmatch(r(3), r(3), r(3))       0.6
     #> 4       histmatch(r(3), r(4))       2.6
-    #> 5 histmatch(r(3), r(4), r(4))       3.3
+    #> 5 histmatch(r(3), r(4), r(4))       3.4
     #> 6       histmatch(r(4), r(4))       5.8
     #> 7 histmatch(r(4), r(4), r(4))       5.8
     #> 8       histmatch(r(4), r(3))       3.4
