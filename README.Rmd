@@ -10,7 +10,7 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "README-"
 )
-options(width = 120, digits = 1)
+options(width = 120, digits = 2)
 ```
 
 # histmatch
@@ -18,8 +18,15 @@ options(width = 120, digits = 1)
 Provides a fast implementation for weighted [histogram matching](https://en.wikipedia.org/wiki/Histogram_matching).
 
 ```{r echo = FALSE}
-library(histmatch)
+devtools::load_all(quiet = TRUE)
 library(dplyr, warn.conflicts = FALSE)
+```
+
+```{r}
+histmatch(1:10, 1:10)
+histmatch(1:10, 2:11)
+histmatch(1:11, 5:6)
+histmatch(1:11, c(2, 4, 5))
 ```
 
 
