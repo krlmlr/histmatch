@@ -1,12 +1,26 @@
 #' @export
 histmatch <- function(source, target, w = NULL) {
+  source <- as.numeric(source)
+  target <- as.numeric(target)
+  if (!is.null(w)) {
+    w <- as.numeric(w)
+    stopifnot(length(w) == length(target))
+  }
+
   x_source <- order(source, method = "radix")
   y_target_order <- order(target, method = "radix")
-  x_target <- cumsum(w[y_target_order]) * length(source) / length(target)
+
+  if (is.null(w)) {
+    x_target <- seq_along(target)
+  } else {
+    x_target <- cumsum(w[y_target_order])
+  }
+  x_target <- x_target * length(source) / length(target)
+
   y_target <- target[y_target_order]
 
   #xy_source_new <- approx(x_target, y_target, x_source, ties = "ordered")
   #xy_source_new$y
   .Call(stats:::C_Approx, x_target, y_target, as.double(x_source), 1,
-        -NA, NA, 0, PACKAGE = "stats")
+        NA, NA, 0, PACKAGE = "stats")
 }
