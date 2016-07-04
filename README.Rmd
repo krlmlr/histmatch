@@ -24,6 +24,7 @@ library(histmatch)
 
 ## Timing
 
+For random vectors, which are generated using the following function:
 
 ```{r}
 r <- function(e) runif(10 ** e)

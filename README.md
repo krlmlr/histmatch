@@ -12,8 +12,9 @@ library(histmatch)
 Timing
 ------
 
+For random vectors, which are generated using the following function:
+
 ``` r
-set.seed(123)
 r <- function(e) runif(10 ** e)
 ```
 
