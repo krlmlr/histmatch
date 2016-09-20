@@ -40,7 +40,7 @@ plot.histmatch <- function(data, ...) {
     stop("ggplot2 is needed for plotting.", call. = FALSE)
 
   ggplot2::ggplot(data$target, ggplot2::aes(x = x, y = y)) +
-    ggplot2::geom_point() +
+    ggplot2::geom_point(size = 3) +
     ggplot2::geom_line() +
     ggplot2::geom_point(data = data$source, color = "red") +
     ggplot2::geom_segment(ggplot2::aes(x = 0, xend = x, y = y, yend = y), data = data$source, color = "red") +
