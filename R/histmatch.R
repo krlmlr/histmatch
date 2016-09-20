@@ -16,7 +16,7 @@ histmatch <- function(source, target, w = NULL) {
     x_target <- cumsum(w[y_target_order])
   }
 
-  x_target <- rescale(x_target, 0.5, length(source) + 0.5)
+  x_target <- rescale(x_target, 1, length(source))
   y_target <- target[y_target_order]
 
   #xy_source_new <- approx(x_target, y_target, x_source, ties = "ordered")
