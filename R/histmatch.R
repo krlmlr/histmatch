@@ -34,6 +34,19 @@ histmatch_data <- function(source, target, w = NULL) {
     class = "histmatch")
 }
 
+#' @export
+plot.histmatch <- function(data, ...) {
+  if (!requireNamespace("ggplot2"))
+    stop("ggplot2 is needed for plotting.", call. = FALSE)
+
+  ggplot2::ggplot(data$target, ggplot2::aes(x = x, y = y)) +
+    ggplot2::geom_point() +
+    ggplot2::geom_line() +
+    ggplot2::geom_point(data = data$source, color = "red") +
+    ggplot2::geom_segment(ggplot2::aes(x = 0, xend = x, y = y, yend = y), data = data$source, color = "red") +
+    ggplot2::geom_segment(ggplot2::aes(x = x, xend = x, y = 0, yend = y), data = data$source, color = "red")
+}
+
 interpolate <- function(x_target, y_target, x_source) {
   #xy_source_new <- approx(x_target, y_target, x_source, ties = "ordered")
   #xy_source_new$y
