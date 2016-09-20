@@ -1,5 +1,11 @@
 #' @export
 histmatch <- function(source, target, w = NULL) {
+  data <- histmatch_data(source, target, w)
+  data$source$y
+}
+
+#' @export
+histmatch_data <- function(source, target, w = NULL) {
   source <- as.numeric(source)
   target <- as.numeric(target)
   if (!is.null(w)) {
@@ -19,7 +25,13 @@ histmatch <- function(source, target, w = NULL) {
   x_target <- rescale(x_target, 1, length(x_source))
   y_target <- target[y_target_order]
 
-  interpolate(x_target, y_target, x_source)
+  y_source <- interpolate(x_target, y_target, x_source)
+  structure(
+    list(
+      target = data.frame(x = x_target, y = y_target),
+      source = data.frame(x = x_source, y = y_source)
+    ),
+    class = "histmatch")
 }
 
 interpolate <- function(x_target, y_target, x_source) {
