@@ -1,7 +1,13 @@
 #' @export
-plot.histmatch <- function(data, overlay = NULL, ...) {
+plot.histmatch <- function(x, y, ..., overlay = NULL) {
   if (!requireNamespace("ggplot2"))
-    stop("ggplot2 is needed for plotting.", call. = FALSE)
+    stop("ggplot2 is needed for plotting.")
+
+  if (!missing(y)) {
+    stop("Can't use y")
+  }
+
+  data <- x
 
   min_x <- min(data$target$x)
 

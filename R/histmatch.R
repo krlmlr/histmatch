@@ -38,12 +38,16 @@ histmatch_data <- function(source, target, w = NULL, open_left = FALSE) {
     class = "histmatch")
 }
 
+approx_call <-
+  ~.Call(
+    stats:::C_Approx, x_target, y_target, as.double(x_source),
+    1, # 1 = linear, 2 = constant
+    NA, NA, 0, PACKAGE = "stats")
+
 interpolate <- function(x_target, y_target, x_source) {
   #xy_source_new <- approx(x_target, y_target, x_source, ties = "ordered")
   #xy_source_new$y
-  .Call(stats:::C_Approx, x_target, y_target, as.double(x_source),
-        1, # 1 = linear, 2 = constant
-        NA, NA, 0, PACKAGE = "stats")
+  eval(approx_call[[2]])
 }
 
 rescale <- function(x, min, max) {
