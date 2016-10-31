@@ -1,7 +1,6 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-histmatch
-=========
+histmatch [![Travis-CI Build Status](https://travis-ci.org/krlmlr/histmatch.svg?branch=master)](https://travis-ci.org/krlmlr/histmatch)
+=======================================================================================================================================
 
 Provides a fast implementation for weighted [histogram matching](https://en.wikipedia.org/wiki/Histogram_matching).
 
@@ -45,15 +44,15 @@ r <- function(e) runif(10 ** e)
     #> # A tibble: 9 × 2
     #>                          expr median_ms
     #>                        <fctr>     <dbl>
-    #> 1                        r(4)      0.33
-    #> 2       histmatch(r(3), r(3))      0.78
-    #> 3 histmatch(r(3), r(3), r(3))      0.83
-    #> 4       histmatch(r(3), r(4))      1.77
-    #> 5 histmatch(r(3), r(4), r(4))      2.18
-    #> 6       histmatch(r(4), r(4))      3.47
-    #> 7 histmatch(r(4), r(4), r(4))      3.88
-    #> 8       histmatch(r(4), r(3))      2.30
-    #> 9 histmatch(r(4), r(3), r(3))      2.36
+    #> 1                        r(4)      0.32
+    #> 2       histmatch(r(3), r(3))      0.77
+    #> 3 histmatch(r(3), r(3), r(3))      0.82
+    #> 4       histmatch(r(3), r(4))      1.75
+    #> 5 histmatch(r(3), r(4), r(4))      2.15
+    #> 6       histmatch(r(4), r(4))      3.44
+    #> 7 histmatch(r(4), r(4), r(4))      3.85
+    #> 8       histmatch(r(4), r(3))      2.27
+    #> 9 histmatch(r(4), r(3), r(3))      2.33
 
 Installation
 ------------
