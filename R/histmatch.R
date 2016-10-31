@@ -13,7 +13,6 @@ histmatch_data <- function(source, target, w = NULL) {
     stopifnot(length(w) == length(target))
   }
 
-  x_source <- order(source, method = "radix")
   y_target_order <- order(target, method = "radix")
 
   if (is.null(w)) {
@@ -21,6 +20,9 @@ histmatch_data <- function(source, target, w = NULL) {
   } else {
     x_target <- cumsum(w[y_target_order])
   }
+
+  x_source <- order(source, method = "radix")
+  x_source <- order(x_source, method = "radix")
 
   x_target <- rescale(x_target, 1, length(x_source))
   y_target <- target[y_target_order]
