@@ -59,6 +59,11 @@ histmatch_data <- function(source, target, w = NULL, open_left = FALSE) {
     class = "histmatch")
 }
 
+rescale <- function(x, min, max) {
+  range_x <- range(x)
+  (x - range_x[[1L]]) / diff(range_x) * (max - min) + min
+}
+
 approx_call <-
   ~.Call(
     stats:::C_Approx, x_target, y_target, as.double(x_source),
@@ -69,9 +74,4 @@ interpolate <- function(x_target, y_target, x_source) {
   #xy_source_new <- approx(x_target, y_target, x_source, ties = "ordered")
   #xy_source_new$y
   eval(approx_call[[2]])
-}
-
-rescale <- function(x, min, max) {
-  range_x <- range(x)
-  (x - range_x[[1L]]) / diff(range_x) * (max - min) + min
 }
