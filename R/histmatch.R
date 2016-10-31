@@ -33,7 +33,9 @@ histmatch_data <- function(source, target, w = NULL, open_left = FALSE) {
     stopifnot(length(w) == length(target))
   }
 
-  y_target_order <- order(target, method = "radix")
+  order <- make_fast_order()
+
+  y_target_order <- order(target)
 
   if (is.null(w)) {
     x_target <- seq_along(target)
@@ -42,8 +44,7 @@ histmatch_data <- function(source, target, w = NULL, open_left = FALSE) {
   }
 
   # Same as rank() without ties
-  x_source <- order(source, method = "radix")
-  x_source <- order(x_source, method = "radix")
+  x_source <- order(order(source))
 
   x_target_start <- if (open_left) 0 else 1
 
