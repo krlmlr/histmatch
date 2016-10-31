@@ -1,16 +1,15 @@
 Package: histmatch
-Title: What the Package Does (one line, title case)
+Title: Weighted Histogram Matching
 Version: 0.0-0
+Date: 2016-07-04
 Authors@R: person("Kirill", "Müller", role = c("aut", "cre"), email = "krlmlr+r@mailbox.org")
-Description: What the package does (one paragraph).
+Description: Provides a fast implementation for weighted histogram matching.
 Suggests:
-    ggplot2
+    ggplot2,
+    testthat
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Date: 2016-07-04
-URLNote: https://github.com/krlmlr/
-BugReports: https://github.com/krlmlr/
-URL: http://krlmlr.github.io/
+URL: https://github.com/krlmlr/histmatch
+BugReports: https://github.com/krlmlr/histmatch/issues
 RoxygenNote: 5.0.1.9000
-Suggests: testthat
