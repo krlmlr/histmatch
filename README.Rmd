@@ -20,6 +20,7 @@ Provides a fast implementation for weighted [histogram matching](https://en.wiki
 ```{r echo = FALSE}
 devtools::load_all(quiet = TRUE)
 library(dplyr, warn.conflicts = FALSE)
+requireNamespace("ggplot2", quietly = TRUE)
 ```
 
 ```{r}
@@ -27,6 +28,18 @@ histmatch(1:10, 1:10)
 histmatch(1:10, 2:11)
 histmatch(1:11, 5:6)
 histmatch(1:11, c(2, 4, 5))
+```
+
+In the following plot, the black and red elements correspond to the target
+and source distribution, respectively.
+
+```{r match-unif-norm}
+set.seed(20161031)
+x_source <- runif(10)
+x_source
+x_target <- rnorm(30)
+x_target
+histmatch_data(x_source, x_target) %>% plot
 ```
 
 
