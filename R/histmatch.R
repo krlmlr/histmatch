@@ -41,6 +41,7 @@ histmatch_data <- function(source, target, w = NULL, open_left = FALSE) {
     x_target <- cumsum(w[y_target_order])
   }
 
+  # Same as rank() without ties
   x_source <- order(source, method = "radix")
   x_source <- order(x_source, method = "radix")
 
