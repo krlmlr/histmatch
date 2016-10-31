@@ -7,7 +7,9 @@ Description: Provides a fast implementation for weighted histogram matching.
 Imports:
     memoise
 Suggests:
+    dplyr,
     ggplot2,
+    microbenchmark,
     testthat
 License: GPL-3
 Encoding: UTF-8
