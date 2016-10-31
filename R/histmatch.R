@@ -1,9 +1,29 @@
+#' Histogram matching
+#'
+#' TBD.
+#'
+#' @param source `[numeric]`\cr Source distribution
+#' @param target `[numeric]`\cr Target distribution
+#' @param w `[numeric]`\cr Optional, a weight vector of the same length as
+#'   `target`
+#' @param open_left `[logical(1)]`\cr Match against an interval open to the left,
+#'   or closed at both ends (default)?
+#' @return
+#'   - For `histmatch()`: A vector of the same length as `source`
+#'
 #' @export
 histmatch <- function(source, target, w = NULL, open_left = FALSE) {
   data <- histmatch_data(source, target, w, open_left)
   data$source$y
 }
 
+#' @details
+#'   A [plot()] method is defined for objects returned by `histmatch_data()`.
+#' @rdname histmatch
+#' @return
+#'   - For `histmatch_data()`: A named list with two components, `"source"`
+#'     and `"target"`, each containing a data frame
+#'
 #' @export
 histmatch_data <- function(source, target, w = NULL, open_left = FALSE) {
   source <- as.numeric(source)
