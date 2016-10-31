@@ -1,11 +1,31 @@
+#' Histogram matching
+#'
+#' TBD.
+#'
+#' @param source `[numeric]`\cr Source distribution
+#' @param target `[numeric]`\cr Target distribution
+#' @param w `[numeric]`\cr Optional, a weight vector of the same length as
+#'   `target`
+#' @param open_left `[logical(1)]`\cr Match against an interval open to the left,
+#'   or closed at both ends (default)?
+#' @return
+#'   - For `histmatch()`: A vector of the same length as `source`
+#'
 #' @export
-histmatch <- function(source, target, w = NULL) {
-  data <- histmatch_data(source, target, w)
+histmatch <- function(source, target, w = NULL, open_left = FALSE) {
+  data <- histmatch_data(source, target, w, open_left)
   data$source$y
 }
 
+#' @details
+#'   A [plot()] method is defined for objects returned by `histmatch_data()`.
+#' @rdname histmatch
+#' @return
+#'   - For `histmatch_data()`: A named list with two components, `"source"`
+#'     and `"target"`, each containing a data frame
+#'
 #' @export
-histmatch_data <- function(source, target, w = NULL) {
+histmatch_data <- function(source, target, w = NULL, open_left = FALSE) {
   source <- as.numeric(source)
   target <- as.numeric(target)
   if (!is.null(w)) {
@@ -13,7 +33,9 @@ histmatch_data <- function(source, target, w = NULL) {
     stopifnot(length(w) == length(target))
   }
 
-  y_target_order <- order(target, method = "radix")
+  order <- make_fast_order()
+
+  y_target_order <- order(target)
 
   if (is.null(w)) {
     x_target <- seq_along(target)
@@ -21,10 +43,12 @@ histmatch_data <- function(source, target, w = NULL) {
     x_target <- cumsum(w[y_target_order])
   }
 
-  x_source <- order(source, method = "radix")
-  x_source <- order(x_source, method = "radix")
+  # Same as rank() without ties
+  x_source <- order(order(source))
 
-  x_target <- rescale(x_target, 1, length(x_source))
+  x_target_start <- if (open_left) 0 else 1
+
+  x_target <- rescale(x_target, x_target_start, length(x_source))
   y_target <- target[y_target_order]
 
   y_source <- interpolate(x_target, y_target, x_source)
@@ -36,29 +60,19 @@ histmatch_data <- function(source, target, w = NULL) {
     class = "histmatch")
 }
 
-#' @export
-plot.histmatch <- function(data, ...) {
-  if (!requireNamespace("ggplot2"))
-    stop("ggplot2 is needed for plotting.", call. = FALSE)
-
-  ggplot2::ggplot(data$target, ggplot2::aes(x = x, y = y)) +
-    ggplot2::scale_x_continuous(breaks = seq_along(data$source$x)) +
-    ggplot2::geom_point(size = 3) +
-    ggplot2::geom_line() +
-    ggplot2::geom_point(data = data$source, color = "red") +
-    ggplot2::geom_segment(ggplot2::aes(x = 1, xend = x, y = y, yend = y), data = data$source, color = "red") +
-    ggplot2::geom_label(ggplot2::aes(x = 1, label = seq_along(x)), data = data$source, color = "red", alpha = 0.7)
+rescale <- function(x, min, max) {
+  range_x <- range(x)
+  (x - range_x[[1L]]) / diff(range_x) * (max - min) + min
 }
+
+approx_call <-
+  ~.Call(
+    stats:::C_Approx, x_target, y_target, as.double(x_source),
+    1, # 1 = linear, 2 = constant
+    NA, NA, 0, PACKAGE = "stats")
 
 interpolate <- function(x_target, y_target, x_source) {
   #xy_source_new <- approx(x_target, y_target, x_source, ties = "ordered")
   #xy_source_new$y
-  .Call(stats:::C_Approx, x_target, y_target, as.double(x_source),
-        1, # 1 = linear, 2 = constant
-        NA, NA, 0, PACKAGE = "stats")
-}
-
-rescale <- function(x, min, max) {
-  range_x <- range(x)
-  (x - range_x[[1L]]) / diff(range_x) * (max - min) + min
+  eval(approx_call[[2]])
 }

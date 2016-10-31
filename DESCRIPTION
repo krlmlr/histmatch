@@ -1,9 +1,11 @@
 Package: histmatch
 Title: Weighted Histogram Matching
-Version: 0.0-1
+Version: 0.0-2
 Date: 2016-10-31
 Authors@R: person("Kirill", "Müller", role = c("aut", "cre"), email = "krlmlr+r@mailbox.org")
 Description: Provides a fast implementation for weighted histogram matching.
+Imports:
+    memoise
 Suggests:
     ggplot2,
     testthat
@@ -12,4 +14,5 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/krlmlr/histmatch
 BugReports: https://github.com/krlmlr/histmatch/issues
+Roxygen: list(markdown = TRUE)
 RoxygenNote: 5.0.1.9000
