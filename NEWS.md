@@ -1,3 +1,8 @@
+## histmatch 0.0-3 (2016-12-15)
+
+- Improve tests.
+
+
 ## histmatch 0.0-2 (2016-10-31)
 
 - New `open_left` argument to control if the `x_target` range should start at 0 (if `open_left` is `TRUE`) or 1 (default).
