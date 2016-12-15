@@ -1,13 +1,15 @@
 Package: histmatch
 Title: Weighted Histogram Matching
-Version: 0.0-2
-Date: 2016-10-31
+Version: 0.0-3
+Date: 2016-12-15
 Authors@R: person("Kirill", "Müller", role = c("aut", "cre"), email = "krlmlr+r@mailbox.org")
 Description: Provides a fast implementation for weighted histogram matching.
 Imports:
     memoise
 Suggests:
+    dplyr,
     ggplot2,
+    microbenchmark,
     testthat
 License: GPL-3
 Encoding: UTF-8
