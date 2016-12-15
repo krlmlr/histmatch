@@ -1,9 +1,0 @@
-^.*\.Rproj$
-^\.Rproj\.user$
-^README\.Rmd$
-^README-.*\.png$
-^\.travis\.yml$
-^\.deploy_key\.pub$
-^\.deploy_key\.enc$
-^scripts/deploy-pages\.sh$
-^_pkgdown\.yml$
