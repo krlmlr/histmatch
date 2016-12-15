@@ -34,6 +34,6 @@ and \code{"target"}, each containing a data frame
 TBD.
 }
 \details{
-A \code{\link[=plot]{plot()}} method is defined for objects returned by \code{histmatch_data()}.
+A \code{\link[graphics:plot]{graphics::plot()}} method is defined for objects returned by \code{histmatch_data()}.
 }
 

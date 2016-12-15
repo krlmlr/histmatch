@@ -18,7 +18,7 @@ histmatch <- function(source, target, w = NULL, open_left = FALSE) {
 }
 
 #' @details
-#'   A [plot()] method is defined for objects returned by `histmatch_data()`.
+#'   A [graphics::plot()] method is defined for objects returned by `histmatch_data()`.
 #' @rdname histmatch
 #' @return
 #'   - For `histmatch_data()`: A named list with two components, `"source"`
